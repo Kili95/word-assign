@@ -1,7 +1,7 @@
 <?php
 global $wpdb;
 $table = 'wp_contact_us';
-$query = "SELECT * FROM " . $table;
+$query = "SELECT * FROM " . $table . " ORDER BY `id` DESC";
 $results = $wpdb->get_results($query, ARRAY_A);
 
 // echo "<pre>";
