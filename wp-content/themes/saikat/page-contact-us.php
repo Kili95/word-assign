@@ -35,14 +35,22 @@ jQuery(document).ready(function($){
 		var email = $("#email").val();
 		var description = $("#description").val();
 		var flag = 0;
+		var mail_format = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
 		$(".form-control").each(function() {
 		    var val = $(this).val();
+		    var input_type = $(this).attr('type');
+
 		    if(val == ""){
 				flag = 1;
 				$(this).css("border-color", "red");
 			}else{
-				$(this).css("border-color", "#ced4da");
+				if(input_type == 'email' && !mail_format.test(val)){
+					flag = 1;
+					$(this).css("border-color", "red");
+				}else{
+					$(this).css("border-color", "#ced4da");
+				}
 			}
 		});
 		

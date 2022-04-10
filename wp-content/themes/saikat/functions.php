@@ -29,3 +29,13 @@ function contact_submit(){
     echo $insert_id;
     exit();
 }
+
+function my_custom_page_fun(){
+	include 'admin/admin-feedback-page.php';
+}
+
+function my_custom_menu(){
+	add_menu_page('Feedbacks', 'Feedbacks', 'manage_options', 'my-custom-page', 'my_custom_page_fun', 'dashicons-feedback', '6');
+}
+
+add_action( 'admin_menu','my_custom_menu' );
