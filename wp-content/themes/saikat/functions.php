@@ -15,14 +15,18 @@ add_action('wp_ajax_contact_submit','contact_submit');
 function contact_submit(){
     $name = $_POST["name"];
     $email = $_POST["email"];
+    $country_code = $_POST["country_code"];
+    $phone_number = $_POST["phone_number"];
+    $company_name = $_POST["company_name"];
+    $company_website = $_POST["company_website"];
     $description = $_POST["description"];
     $status = '1';
     $created = date('Y-m-d H:i:s');
 
 	global $wpdb;
 	$table = 'wp_contact_us';
-	$data = array('name' => $name, 'email' => $email, 'description' => $description, 'status' => $status, 'created' => $created);
-	$format = array('%s','%s','%s','%s','%s');
+	$data = array('name' => $name, 'email' => $email, 'country_code' => $country_code, 'phone_number' => $phone_number, 'company_name' => $company_name, 'company_website' => $company_website, 'description' => $description, 'status' => $status, 'created' => $created);
+	$format = array('%s','%s','%s','%s','%s','%s','%s','%s','%s');
 	$wpdb->insert($table,$data,$format);
 	$insert_id = $wpdb->insert_id;
 

@@ -7,13 +7,38 @@
 				<h5 class="text-center mb-4">Contact Us</h5>
 				<form>
 					<div class="form-group">
-					    <input type="text" class="form-control" id="name" placeholder="Name">
+					    <input type="text" class="form-control mandatory-field" id="name" placeholder="Name">
 					</div>
 				  	<div class="form-group">
-					    <input type="email" class="form-control" id="email" placeholder="Email">
+					    <input type="email" class="form-control mandatory-field" id="email" placeholder="Email">
+					</div>
+					<div class="input-group mb-3">
+						<div class="input-group-prepend">
+				          	<select id="country_code" class="form-control mandatory-field">
+				          		<option value="">-Country-</option>
+					        	<option value="+93">Afghanistan(+93)</option>
+					        	<option value="+54">Argentina(+54)</option>
+					        	<option value="+880">Bangladesh(+880)</option>
+					        	<option value="+1">Canada(+1)</option>
+					        	<option value="+33">France(+33)</option>
+					        	<option value="+91">India(+91)</option>
+					        	<option value="+81">Japan(+81)</option>
+					        	<option value="+92">Pakistan(+92)</option>
+					        	<option value="+94">Sri Lanka(+94)</option>
+					        	<option value="+44">United Kingdom(+44)</option>
+					        	<option value="+1">United States(+1)</option>
+					      	</select>
+					    </div>
+					    <input type="number" class="form-control mandatory-field" id="phone_number" placeholder="Phone Number">
 					</div>
 					<div class="form-group">
-					    <textarea class="form-control" id="description" rows="3" placeholder="Description"></textarea>
+					    <input type="text" class="form-control mandatory-field" id="company_name" placeholder="Company Name">
+					</div>
+					<div class="form-group">
+					    <input type="text" class="form-control" id="company_website" placeholder="Company Website">
+					</div>
+					<div class="form-group">
+					    <textarea class="form-control mandatory-field" id="description" rows="3" placeholder="Message"></textarea>
 				  	</div>
 				  	<hr>
 				  	<div class="form-group">
@@ -33,11 +58,15 @@ jQuery(document).ready(function($){
 
 		var name = $("#name").val();
 		var email = $("#email").val();
+		var country_code = $("#country_code").val();
+		var phone_number = $("#phone_number").val();
+		var company_name = $("#company_name").val();
+		var company_website = $("#company_website").val();
 		var description = $("#description").val();
 		var flag = 0;
 		var mail_format = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
-		$(".form-control").each(function() {
+		$(".mandatory-field").each(function() {
 		    var val = $(this).val();
 		    var input_type = $(this).attr('type');
 
@@ -56,7 +85,7 @@ jQuery(document).ready(function($){
 		
 
 		var ajaxurl = "<?php echo admin_url('admin-ajax.php') ?>";
-		var ajaxData = {'action' : 'contact_submit', 'name' : name, 'email' : email, 'description' : description};
+		var ajaxData = {'action' : 'contact_submit', 'name' : name, 'email' : email, 'country_code' : country_code, 'phone_number' : phone_number, 'company_name' : company_name, 'company_website' : company_website, 'description' : description};
 
 		if(flag == 0){
 			$.ajax({
